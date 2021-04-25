@@ -8,14 +8,26 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
+
+/**
+ * 
+ * @author CAUADEV
+ *
+ */
+
+//anotacao para definir esta class como gerenciador das exceptions registradas
 @RestControllerAdvice
 public class ApplicationControllerAdvice {
 	
+	//definindo qual a exception capturar
 	@ExceptionHandler(MethodArgumentNotValidException.class)
+	//status retornado
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	public Erros handleMethodValidException(MethodArgumentNotValidException argumentNotValidException) {
 		
+		//iterando lista de erros utilizando o StreamAPI e retornando
 		List<String> errors = argumentNotValidException.getBindingResult().getAllErrors().stream()
 		.map(erro -> erro.getDefaultMessage()).collect(Collectors.toList());
 		
@@ -28,4 +40,8 @@ public class ApplicationControllerAdvice {
 		return new Erros(postException.getMessage());
 	}
 	
+	@ExceptionHandler(ResponseStatusException.class)
+	public Erros handlePostException(ResponseStatusException exception) {
+		return new Erros(exception.getReason(), exception.getStatus().toString());
+	}
 }

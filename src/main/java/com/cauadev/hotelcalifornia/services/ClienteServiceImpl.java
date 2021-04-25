@@ -11,8 +11,20 @@ import com.cauadev.hotelcalifornia.model.Hotel;
 import com.cauadev.hotelcalifornia.repository.ClienteRepository;
 import com.cauadev.hotelcalifornia.repository.HotelRepository;
 
+
+/**
+ * 
+ * @author CAUADEV
+ *
+ */
+
 @Service
 public class ClienteServiceImpl implements ClienteService{
+	
+	/*
+	 * utilizando a anotacao @autowired para criar pontos de injecao de dependencia
+	 * e o spring assumir o controle da instancia.
+	 */
 	
 	@Autowired
 	HotelRepository hotelRepository;
