@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +36,8 @@ public class Hotel {
 	private String cidade;
 	
 	@NotNull(message = "Campo estrelas obrigatorio")
+	@Min(value = 0, message = "Valor minimo de estrelas é 0")
+	@Max(value = 10, message = "Valor máximo de estrelas é 10")
 	private Float estrelas;
 	
 }
