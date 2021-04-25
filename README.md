@@ -2,6 +2,7 @@
 
 Projeto criado para exercício do treinamento na FlexPag, focado em criar uma API Restful para um serviço de Hotel nas tecnologias java.
 <br>
+<br>
 Tecnologias usadas:
 
 
